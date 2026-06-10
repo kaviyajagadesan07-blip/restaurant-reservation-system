@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Savory Space Restaurant</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header>
+    <h1>🍽 Savory Space Restaurant Reservation System</h1>
+</header>
+
+<nav>
+    <a href="#login">Login</a>
+    <a href="#signup">Signup</a>
+    <a href="#booking">Booking</a>
+    <a href="#history">History</a>
+    <a href="#admin">Admin</a>
+</nav>
+
+<!-- Login -->
+<section id="login" class="container">
+    <h2>Customer Login</h2>
+    <input type="email" placeholder="Email Address">
+    <input type="password" placeholder="Password">
+    <button onclick="login()">Login</button>
+</section>
+
+<!-- Signup -->
+<section id="signup" class="container">
+    <h2>Customer Signup</h2>
+    <input type="text" placeholder="Full Name">
+    <input type="email" placeholder="Email Address">
+    <input type="password" placeholder="Password">
+    <button onclick="signup()">Signup</button>
+</section>
+
+<!-- Booking -->
+<section id="booking" class="container">
+    <h2>Book a Table</h2>
+
+    <input id="customer_name" placeholder="Customer Name">
+    <input id="phone" placeholder="Phone Number">
+    <input id="date" type="date">
+    <input id="booking_time" type="time">
+    <input id="people" type="number" placeholder="Number of People">
+
+    <button id="bookBtn">Book Table</button>
+</section>
+
+<!-- History -->
+<section id="history">
+    <h2>Reservation History</h2>
+
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Phone</th>
+                <th>Date</th>
+                <th>Time</th>
+                <th>People</th>
+            </tr>
+        </thead>
+
+        <tbody id="bookingTable"></tbody>
+    </table>
+</section>
+
+<!-- Admin -->
+<section id="admin">
+
+    <h2>👨‍💼 Admin Dashboard</h2>
+
+    <div class="dashboard">
+
+        <div class="card">
+            <h3 id="totalBookings">0</h3>
+            <p>Total Reservations</p>
+        </div>
+
+        <div class="card">
+            <h3>15</h3>
+            <p>Available Tables</p>
+        </div>
+
+        <div class="card">
+            <h3>₹25,000</h3>
+            <p>Revenue</p>
+        </div>
+
+    </div>
+
+</section>
+
+<script src="script.js"></script>
+
+</body>
+</html>
