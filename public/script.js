@@ -17,7 +17,7 @@ document.getElementById("bookBtn").addEventListener("click", function(){
         people: document.getElementById("people").value
     };
 
-    fetch("http://localhost:3000/book",{
+    fetch("/book", {
         method:"POST",
         headers:{
             "Content-Type":"application/json"
@@ -33,7 +33,7 @@ document.getElementById("bookBtn").addEventListener("click", function(){
 
 function loadBookings(){
 
-    fetch("http://localhost:3000/bookings")
+    fetch("/bookings")
     .then(res=>res.json())
     .then(data=>{
 
