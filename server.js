@@ -6,7 +6,7 @@ const app = express();
 
 app.use(cors());
 app.use(express.json());
-
+app.use(express.static("public"));
 // Add Booking
 app.post("/book", (req, res) => {
     const { name, phone, date, booking_time, people } = req.body;
