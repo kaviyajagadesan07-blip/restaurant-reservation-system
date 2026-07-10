@@ -1,35 +1,21 @@
 const express = require("express");
-const mysql = require("mysql2");
 const cors = require("cors");
+const db = require("./database");
 
 const app = express();
 
 app.use(cors());
 app.use(express.json());
 
-const db = mysql.createConnection({
-    host: "localhost",
-    user: "root",
-    password: "",
-    database: "savoryspace_db",
-    dateStrings: true
-});
-
-db.connect((err) => {
-    if (err) {
-        console.log("Database Error:", err);
-    } else {
-        console.log("Database Connected");
-    }
-});
-
 // Add Booking
 app.post("/book", (req, res) => {
-
     const { name, phone, date, booking_time, people } = req.body;
 
-    const sql =
-        "INSERT INTO guest_reservations (name, phone, date, booking_time, people) VALUES (?, ?, ?, ?, ?)";
+    const sql = `
+        INSERT INTO guest_reservations
+        (name, phone, date, booking_time, people)
+        VALUES (?, ?, ?, ?, ?)
+    `;
 
     db.query(
         sql,
@@ -37,31 +23,36 @@ app.post("/book", (req, res) => {
         (err, result) => {
             if (err) {
                 console.log(err);
-                return res.status(500).send("Error");
+                return res.status(500).json({ message: "Database Error" });
             }
 
-            res.send("Booking Saved");
+            res.json({ message: "Booking Saved Successfully" });
         }
     );
 });
 
 // Get All Bookings
 app.get("/bookings", (req, res) => {
+    const sql = "SELECT * FROM guest_reservations ORDER BY id ASC";
 
-    db.query(
-        "SELECT * FROM guest_reservations ORDER BY id ASC",
-        (err, result) => {
-
-            if (err) {
-                console.log(err);
-                return res.status(500).send("Error");
-            }
-
-            res.json(result);
+    db.query(sql, (err, result) => {
+        if (err) {
+            console.log(err);
+            return res.status(500).json({ message: "Database Error" });
         }
-    );
+
+        res.json(result);
+    });
 });
 
-app.listen(3000, () => {
-    console.log("Server running on port 3000");
+// Home Route
+app.get("/", (req, res) => {
+    res.send("Restaurant Reservation API is Running");
+});
+
+// Render Port
+const PORT = process.env.PORT || 3000;
+
+app.listen(PORT, () => {
+    console.log(`Server running on port ${PORT}`);
 });
