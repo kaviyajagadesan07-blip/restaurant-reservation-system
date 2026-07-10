@@ -1,16 +1,16 @@
 const mysql = require("mysql2");
 
 const db = mysql.createConnection({
-  host: "127.0.0.1",
+  host: "hayabusa.proxy.rlwy.net",
   user: "root",
-  password: "",
-  database: "savoryspace_db",
-  port: 3306
+  password: "CyyYwXvKvYfQjLpHuJAfYOQyOjogAhYJ",
+  database: "railway",
+  port: 20477
 });
 
 db.connect((err) => {
   if (err) {
-    console.log("❌ Connection Failed:", err.message);
+    console.log("❌ Connection Failed:", err);
   } else {
     console.log("✅ Database Connected Successfully!");
   }
